@@ -1,0 +1,8 @@
+<div class="container text-center">
+  <h2 class="text-center my-3">Add a new Task</h2>
+  <input type="text" #taskTitle class="form-control mb-3" placeholder="add task title" required />
+  <textarea #taskDescription class="form-control mb-3" placeholder="enter task description" required></textarea>
+  <input type="text" #taskTime class="form-control mb-3" placeholder="add task time" required />
+  <a class="btn btn-success mx-3" (click)="addTask(taskTitle, taskDescription, taskTime)" routerLink="/">Save</a>
+  <a routerLink="/" class="btn btn-danger">Cancel</a>
+</div>
