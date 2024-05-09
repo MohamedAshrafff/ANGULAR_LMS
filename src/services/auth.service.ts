@@ -23,7 +23,7 @@ export class AuthService implements CanActivate {
       return true; // User is authenticated and has the required role, allow access
     } else {
       // User is not authenticated or does not have the required role, redirect to login page
-      this.router.navigate(['not-found']);
+      this.router.navigate(['log-in']);
       return false;
     }
   }
