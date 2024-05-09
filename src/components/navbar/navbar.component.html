@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg bg-success" data-bs-theme="dark">
+    <div class="container-fluid">
+        <img src="../../assets/Logo_w.png"
+            [ngStyle]="{'object-fit': 'cover', 'height.px': 40, 'width.px': 40 , 'margin-right.px':20 , 'margin-left.px':20}" />
+        <a class="navbar-brand fw-bold" href="#" routerLink="/">EduHub</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse text-light" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link mx-3" [class.active]="isLinkActive('/')" [class.fw-bold]="isLinkActive('/')"
+                        [class.border-bottom]="isLinkActive('/')" [class.border-2]="isLinkActive('/')"
+                        [class.border-light]="isLinkActive('/')" routerLink="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-3" [class.active]="isLinkActive('/grades')"
+                        [class.fw-bold]="isLinkActive('/grades')" [class.border-bottom]="isLinkActive('/grades')"
+                        [class.border-2]="isLinkActive('/grades')" [class.border-light]="isLinkActive('/grades')"
+                        routerLink="/grades">Grades</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-3" [class.active]="isLinkActive('/courses')"
+                        [class.fw-bold]="isLinkActive('/courses')" [class.border-bottom]="isLinkActive('/courses')"
+                        [class.border-2]="isLinkActive('/courses')" [class.border-light]="isLinkActive('/courses')"
+                        routerLink="/courses">Courses</a>
+                </li>
+            </ul>
+        </div>
+        <div class="me-5  fw-bold bg-warning px-2">
+            {{this.currentUser.role}}
+        </div>
+        <div class="me-5 text-light fw-bold">
+            {{this.currentUser.full_name}}
+        </div>
+        <div>
+            <button class="btn btn-danger" (click)="Logout()">Logout</button>
+        </div>
+    </div>
+</nav>

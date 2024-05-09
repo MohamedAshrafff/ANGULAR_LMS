@@ -1,0 +1,25 @@
+<div>
+    <app-navbar></app-navbar>
+    <div class="container mt-5">
+        <h2>Enroll New Courses</h2>
+        <div class="row justify-content-start text-start ">
+            <ng-container *ngFor="let course of coursesObservable | async; index as i">
+                <div class="col-md-3 mb-4" *ngIf="!checkEnrolled(course.id)"> <!-- Add mb-4 for bottom margin -->
+                    <div class="card">
+                        <div class="card-body">
+                            <img src="../../assets/c_bg.png" class="card-img-top" alt="..." [style.object-fit]="'cover'"
+                                [style.height.px]="150" style="border-radius: 10px;">
+                            <span class="badge text-primary my-2" [style.backgroundColor]="'#e2d5ff'">{{
+                                course.course_tag }}</span>
+                            <h5 class="card-title align-items-baseline mb-4 fw-bold">{{ course.course_name }}</h5>
+                            <p class="card-text">Instructor : <span class="fw-bold">{{ course.instructor_name }}</span>
+                            </p>
+                            <a class="btn btn-success w-100 "
+                                (click)="sendEnrollRequest(course.id , course.course_name)">Enroll</a>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>

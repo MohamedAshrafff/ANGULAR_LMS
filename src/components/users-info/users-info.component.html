@@ -1,0 +1,50 @@
+<app-instructor-navbar></app-instructor-navbar>
+<h3 class="text-center mt-5">All Users</h3>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="text-center">
+                        <th class="bg-success text-light">Id</th>
+                        <th class="bg-success text-light">Name</th>
+                        <th class="bg-success text-light ">Email</th>
+                        <th class="bg-success text-light">Role</th>
+                        <th class="bg-success text-light">Enrolled Courses if any</th>
+                        <th class="bg-success text-light">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of usersObservable | async; index as i" class="text-center fw-bold">
+                        <ng-container
+                            *ngIf="role === 'admin' && user.role !== 'admin' || (role === 'instructor' && user.role === 'student')">
+                            <td>{{i}}</td>
+                            <td>{{ user.full_name }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.role }}</td>
+                            <td>
+                                <ul>
+                                    <li *ngFor="let course of user.enrolled_courses">
+                                        {{course.course_name}}
+                                    </li>
+                                </ul>
+                            </td>
+                            <td *ngIf="role === 'admin'" class="d-flex justify-content-evenly">
+                                <button class="btn btn-danger fw-bold me-4"
+                                    (click)="DeleteUser(user.id)">Delete</button>
+                                <button class="btn btn-warning fw-bold">Archive</button>
+
+                            </td>
+                            <td *ngIf="role === 'instructor'" class="d-flex justify-content-evenly">
+                                <button class="btn btn-primary fw-bold me-4"
+                                    [routerLink]="['/users-info', user.id]">Check
+                                    Progress</button>
+                            </td>
+                        </ng-container>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>

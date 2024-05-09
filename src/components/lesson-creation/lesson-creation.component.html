@@ -1,0 +1,27 @@
+<app-instructor-navbar></app-instructor-navbar>
+<div class="container">
+    <div class="row">
+        <h3 class="text-center mt-3">Lesson Creation</h3>
+        <div class="card col-md-6 offset-md-3">
+            <div class="form-group mt-3">
+                <label class="fw-bold" for="lessonTitle">Title:</label>
+                <input type="text" class="form-control" id="lessonTitle" placeholder="Enter lesson title"
+                    name="lessonTitle" required #lessonTitle>
+            </div>
+            <div class="form-group">
+                <label class="fw-bold" for="pdfLink">PDF Link:</label>
+                <input type="text" class="form-control" id="pdfLink" placeholder="Enter PDF link" name="pdfLink"
+                    required #pdfLink>
+            </div>
+            <div class="form-group">
+                <label class="fw-bold" for="videoLink">Video Link:</label>
+                <input type="text" class="form-control" id="videoLink" placeholder="Enter video link" name="videoLink"
+                    required #videoLink>
+            </div>
+            <div class="text-center">
+                <button type="button" class="btn btn-success my-5 "
+                    (click)="addLesson(lessonTitle.value, pdfLink.value, videoLink.value)">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>

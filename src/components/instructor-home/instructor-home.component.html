@@ -1,0 +1,49 @@
+<app-instructor-navbar></app-instructor-navbar>
+<div>
+    <div class="container mt-5">
+        <h2>Welcome to the LMS !</h2>
+        <div>
+            <a routerLink='/actions-home/course-creation' class="btn btn-primary my-3">Add Course</a>
+        </div>
+        <h3>ALL Courses</h3>
+
+        <!-- Display loading spinner only for ng-container -->
+        <ng-container *ngIf="isLoading; else coursesContent">
+            <div class="d-flex justify-content-center">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </ng-container>
+
+        <!-- Content for courses -->
+        <ng-template #coursesContent>
+            <div class="row justify-content-start text-start ">
+                <ng-container *ngFor="let course of coursesObservable | async; index as i">
+                    <div class="col-md-3 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <img src="../../assets/c_bg.png" class="card-img-top" alt="..."
+                                    [style.object-fit]="'cover'" [style.height.px]="150" style="border-radius: 10px;">
+                                <span class="badge text-primary my-2" [style.backgroundColor]="'#e2d5ff'">{{
+                                    course.course_tag }}</span>
+                                <h5 class="card-title align-items-baseline mb-4 fw-bold">{{ course.course_name }}</h5>
+                                <p class="card-text">Instructor : <span class="fw-bold">{{ course.instructor_name
+                                        }}</span></p>
+                                <div class="text-center">
+                                    <a [routerLink]="['/actions-home', course.id]"
+                                        class="btn btn-success w-75 mb-2 fw-bold">
+                                        Edit Course
+                                    </a>
+                                    <a class="btn btn-danger w-75 fw-bold" (click)="deleteCourse(course.id)">Delete
+                                        Course</a>
+                                    <a class="btn btn-warning w-75 mt-2 fw-bold">Archive</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </ng-template>
+    </div>
+</div>

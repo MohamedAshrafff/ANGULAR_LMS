@@ -1,0 +1,81 @@
+<div class="container justify-content-center align-items-center mt-5">
+    <div class="d-flex justify-content-center align-items-center  flex-column py-5">
+        <img src="../../assets/Logo.png" [ngStyle]="{'object-fit': 'cover', 'height.px': 80, 'width.px': 80}" />
+        <h2>Sign Up</h2>
+    </div>
+    <div class="d-flex align-items-center justify-content-center">
+        <form *ngIf="signUpForm" [formGroup]="signUpForm" class="w-50" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+                <label for="exampleInputName" class="form-label fw-bold">Full Name</label>
+                <input type="text" class="form-control" id="exampleInputName" formControlName="fullName">
+                <!-- Display error message if full name field is invalid -->
+                <div
+                    *ngIf="signUpForm.get('fullName')?.invalid && (signUpForm.get('fullName')?.dirty || signUpForm.get('fullName')?.touched)">
+                    <small class="text-danger">Please enter your full name.</small>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label fw-bold">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" formControlName="email"
+                    aria-describedby="emailHelp">
+                <!-- Display error message if email field is invalid -->
+                <div
+                    *ngIf="signUpForm.get('email')?.invalid && (signUpForm.get('email')?.dirty || signUpForm.get('email')?.touched)">
+                    <small class="text-danger">Please enter a valid email address.</small>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword" class="form-label fw-bold">Password</label>
+                <div class="input-group">
+                    <input type="password" class="form-control" id="exampleInputPassword" [type]="passwordFieldType"
+                        formControlName="password">
+                    <button class="btn btn-outline-success" type="button" (click)="togglePasswordVisibility()">
+                        <i class="fas" [ngClass]="{'fa-eye': passwordVisible, 'fa-eye-slash': !passwordVisible}"
+                            id="eyeIcon"></i>
+                    </button>
+                </div>
+                <!-- Display error message if password field is invalid -->
+                <div
+                    *ngIf="signUpForm.get('password')?.invalid && (signUpForm.get('password')?.dirty || signUpForm.get('password')?.touched)">
+                    <small class="text-danger">Please enter a password.</small>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputConfirmPassword" class="form-label fw-bold">Confirm Password</label>
+                <div class="input-group">
+                    <input type="password" class="form-control" id="exampleInputConfirmPassword"
+                        [type]="confirmPasswordFieldType" formControlName="confirmPassword">
+                    <button class="btn btn-outline-success" type="button" (click)="toggleConfirmPasswordVisibility()">
+                        <i class="fas"
+                            [ngClass]="{'fa-eye': confirmPasswordVisible, 'fa-eye-slash': !confirmPasswordVisible}"
+                            id="confirmEyeIcon"></i>
+                    </button>
+                </div>
+                <!-- Display error message if confirm password field is invalid -->
+                <div
+                    *ngIf="signUpForm.get('confirmPassword')?.invalid && (signUpForm.get('confirmPassword')?.dirty || signUpForm.get('confirmPassword')?.touched)">
+                    <small class="text-danger">Please confirm your password.</small>
+                </div>
+            </div>
+            <label for="exampleInputRole" class="form-label fw-bold">Register as Instructor or Student</label>
+            <div class="mb-3 d-flex">
+                <div class="input-group">
+                    <input type="radio" class="form-check-input" id="instructor" name="role" value="instructor"
+                        formControlName="role">
+                    <label for="instructor" class="form-check-label ms-2">Instructor</label>
+                </div>
+                <div class="input-group">
+                    <input type="radio" class="form-check-input" id="student" name="role" value="student"
+                        formControlName="role">
+                    <label for="student" class="form-check-label ms-2">Student</label>
+                </div>
+            </div>
+            <div class="my-5 d-flex justify-content-center align-items-center flex-column">
+                <!-- Disable the button if the form is invalid -->
+                <button type="submit" [disabled]="signUpForm.invalid" class="btn btn-success w-50 fw-bold p-2">Sign
+                    Up</button>
+                <p class="mt-2">Already Have an Account? <a routerLink="/log-in">Sign In</a></p>
+            </div>
+        </form>
+    </div>
+</div>

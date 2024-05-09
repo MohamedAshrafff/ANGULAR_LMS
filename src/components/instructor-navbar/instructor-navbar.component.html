@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg bg-success " data-bs-theme="dark">
+    <div class="container-fluid">
+        <img src="../../assets/Logo_w.png"
+            [ngStyle]="{'object-fit': 'cover', 'height.px': 40, 'width.px': 40 , 'margin-right.px':20 , 'margin-left.px':20}" />
+        <a class="navbar-brand fw-bold" routerLink="/actions-home">EduHub</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse text-light" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link mx-3" [class.active]="isLinkActive('/actions-home')"
+                        [class.fw-bold]="isLinkActive('/actions-home')"
+                        [class.border-bottom]="isLinkActive('/actions-home')"
+                        [class.border-2]="isLinkActive('/actions-home')"
+                        [class.border-light]="isLinkActive('/actions-home')" routerLink="/actions-home">Mange
+                        Courses</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-3" [class.active]="isLinkActive('/users-info')"
+                        [class.fw-bold]="isLinkActive('/users-info')"
+                        [class.border-bottom]="isLinkActive('/users-info')"
+                        [class.border-2]="isLinkActive('/users-info')"
+                        [class.border-light]="isLinkActive('/users-info')" routerLink="/users-info">Mange
+                        Users</a>
+                </li>
+                <li class="nav-item" *ngIf="currentUser.role === 'admin'">
+                    <a class="nav-link mx-3" [class.active]="isLinkActive('/requests-info')"
+                        [class.fw-bold]="isLinkActive('/requests-info')"
+                        [class.border-bottom]="isLinkActive('/requests-info')"
+                        [class.border-2]="isLinkActive('/requests-info')"
+                        [class.border-light]="isLinkActive('/requests-info')" routerLink="/requests-info">
+                        Requests</a>
+                </li>
+            </ul>
+        </div>
+        <div class="me-5  fw-bold bg-warning px-2">
+            {{currentUser.role}}
+        </div>
+        <div class="me-5 text-light fw-bold">
+            {{currentUser.full_name}}
+        </div>
+        <div>
+            <button class="btn btn-danger" (click)="Logout()">Logout</button>
+        </div>
+    </div>
+</nav>

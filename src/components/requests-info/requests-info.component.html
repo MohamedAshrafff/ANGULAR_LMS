@@ -1,0 +1,33 @@
+<app-instructor-navbar></app-instructor-navbar>
+<h3 class="text-center mt-5">All Users</h3>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="text-center">
+                        <th class="bg-success text-light">Req Id</th>
+                        <th class="bg-success text-light">Student Name</th>
+                        <th class="bg-success text-light">Course Name</th>
+                        <th class="bg-success text-light">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let req of requestsObservable | async; index as i" class="text-center fw-bold">
+                        <ng-container>
+                            <td>{{req.request_id}}</td>
+                            <td>{{ req.student_name }}</td>
+                            <td>{{ req.course_name }}</td>
+                            <td class="d-flex justify-content-evenly">
+                                <button class="btn btn-danger fw-bold me-4"
+                                    (click)="acceptRequest(req.student_id  , req.course_id ,req.course_name , req.request_id )">Accept</button>
+                                <button class="btn btn-warning fw-bold"
+                                    (click)="deleteRequest(req.request_id)">Reject</button>
+                            </td>
+                        </ng-container>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
