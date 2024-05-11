@@ -1,30 +1,21 @@
 <app-navbar></app-navbar>
 <div class="container">
     <div class="row">
-        <div class="col-md-6 offset-md-3 mt-5">
-            <div class="card">
-                <div class="card-body">
-                    <h3 class="text-center">Upload Deliverable</h3>
-                    <hr>
-                    <form>
-                        <div class="mb-3">
-                            <label for="file" class="form-label">File</label>
-                            <input type="file" class="form-control" id="file">
-                        </div>
-                        <div class="mb-3">
-                            <label for="title" class="form-label">Title</label>
-                            <input type="text" class="form-control" id="title">
-                        </div>
-                        <div class="mb-3">
-                            <label for="id" class="form-label">Student Id</label>
-                            <input type="text" class="form-control" id="id">
-                        </div>
-                        <div class="mb-3">
-                            <label for="description" class="form-label">Description</label>
-                            <textarea class="form-control" id="description"></textarea>
-                        </div>
-                    </form>
-                </div>
+        <h3 class="text-center mt-3">Submit Deliverable</h3>
+        <div class="card col-md-6 offset-md-3 mt-3">
+            <div class="form-group mt-3">
+                <label class="fw-bold" for="submissionLink">Submisson Link</label>
+                <input type="text" class="form-control" id="submissionLink" placeholder="Enter submission link"
+                    name="submissionLink" required #submissionLink>
+            </div>
+            <div class="form-group">
+                <label class="fw-bold" for="submissionTitle">Submission Title</label>
+                <input type="text" class="form-control" id="submissionTitle" placeholder="Enter submission title"
+                    name="submissionTitle" required #submissionTitle>
+            </div>
+            <div class="text-center">
+                <button type="button" class="btn btn-success my-5 w-25" routerLink="/"
+                    (click)="submitDeliverable(submissionLink.value, submissionTitle.value)">Submit</button>
             </div>
         </div>
     </div>

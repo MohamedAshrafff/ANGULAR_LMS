@@ -19,6 +19,7 @@ export class InstructorHomeComponent {
   ngOnInit(): void {
     const storedUser = localStorage.getItem('currentUser');
     if (storedUser) {
+      console.log("FOUND")
       this.userService.currentUser = JSON.parse(storedUser);
     }
     this.coursesObservable.subscribe({

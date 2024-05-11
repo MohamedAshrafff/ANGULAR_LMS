@@ -1,0 +1,17 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="row">
+        <h3 class="text-center mt-3">Submit Deliverable</h3>
+        <div class="card col-md-6 offset-md-3 mt-3">
+            <div class="form-group mt-3">
+                <label class="fw-bold" for="gradePercent">Enter Grade Percentage%</label>
+                <input type="number" class="form-control" id="gradePercent" placeholder="Enter grade Percentage"
+                    name="gradePercent" required #gradePercent>
+            </div>
+            <div class="text-center">
+                <button type="button" class="btn btn-success my-5 w-25" routerLink="/instructor-grading"
+                    (click)="submitDeliverable(gradePercent.value)">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>

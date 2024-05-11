@@ -18,6 +18,8 @@ import { LessonCreationComponent } from '../components/lesson-creation/lesson-cr
 import { UserDetailsComponent } from '../components/user-details/user-details.component';
 import { AuthService } from '../services/auth.service';
 import { RequestsInfoComponent } from '../components/requests-info/requests-info.component';
+import { InstructorGradingComponent } from '../components/instructor-grading/instructor-grading.component';
+import { InstructorGradingSubmissionComponent } from '../components/instructor-grading-submission/instructor-grading-submission.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthService], data: { allowedRoles: ['student', 'admin'] } }, // Redirect to 'log-in' path when the root path is accessed
@@ -33,7 +35,9 @@ const routes: Routes = [
   { path: 'users-info', component: UsersInfoComponent, canActivate: [AuthService], data: { allowedRoles: ['admin', 'instructor'] } },
   { path: 'users-info/:id', component: UserDetailsComponent, canActivate: [AuthService], data: { allowedRoles: ['admin', 'instructor'] } },
   { path: 'requests-info', component: RequestsInfoComponent, canActivate: [AuthService], data: { allowedRoles: ['admin',] } },
-  { path: 'grades', component: GradesComponent },
+  { path: 'grades', component: GradesComponent, canActivate: [AuthService], data: { allowedRoles: ['student'] } },
+  { path: 'instructor-grading', component: InstructorGradingComponent, canActivate: [AuthService], data: { allowedRoles: ['instructor'] } },
+  { path: 'instructor-grading/:id', component: InstructorGradingSubmissionComponent, canActivate: [AuthService], data: { allowedRoles: ['instructor'] } },
   { path: 'not-found', component: NotFoundComponent },
   { path: '**', redirectTo: 'not-found' }, // Redirect to 'not-found' for any other unknown paths
 ];

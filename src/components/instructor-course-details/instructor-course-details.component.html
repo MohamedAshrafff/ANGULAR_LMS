@@ -1,8 +1,8 @@
 <app-instructor-navbar></app-instructor-navbar>
 <div [style.minHeight]="'120vh'">
-    <div class="w-100" style="height: 40vh; position: relative;">
-        <img class="w-100" style="object-fit: cover; height: 100%; position: absolute; top: 0; left: 0; z-index: 0;"
-            src="../../assets/c_bg.png" alt="Landing" />
+    <div class="w-100" style="height: 40vh;" *ngIf="course">
+        <img class=" w-100" style="object-fit:cover ; height: 100%;" src="../../assets/c_bg{{course.course_image}}.png"
+            alt="Landing" />
     </div>
     <div class="container my-5" *ngIf="isLoading; else content">
         <!-- Loading spinner -->

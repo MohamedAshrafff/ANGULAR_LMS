@@ -11,6 +11,10 @@ export class CourseCreationComponent {
   course: Course | null = null; // Initialize course with null
   constructor(private coursesService: CoursesService) { }
 
+  getRandomInt() {
+    return (Math.floor(Math.random() * 4) + 1).toString();
+  }
+
   createCourse(courseId: string, courseName: string, instructorName: string, courseTag: string): void {
     const newCourse: Course = {
       id: courseId, // Assuming id is of type string
@@ -18,8 +22,8 @@ export class CourseCreationComponent {
       course_name: courseName,
       instructor_name: instructorName,
       course_tag: courseTag,
-      course_image: '', // You can add course image logic here if needed
-      course_content: [] // Assuming this is an array of course content
+      course_image: this.getRandomInt(),
+      course_content: []
     };
 
     this.coursesService.addCourse(newCourse);

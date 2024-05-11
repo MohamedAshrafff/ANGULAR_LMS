@@ -33,6 +33,14 @@
                         [class.border-light]="isLinkActive('/requests-info')" routerLink="/requests-info">
                         Requests</a>
                 </li>
+                <li class="nav-item" *ngIf="currentUser.role === 'instructor' ">
+                    <a class="nav-link mx-3" [class.active]="isLinkActive('/instructor-grading')"
+                        [class.fw-bold]="isLinkActive('/instructor-grading')"
+                        [class.border-bottom]="isLinkActive('/instructor-grading')"
+                        [class.border-2]="isLinkActive('/instructor-grading')"
+                        [class.border-light]="isLinkActive('/instructor-grading')" routerLink="/instructor-grading">
+                        Gradings</a>
+                </li>
             </ul>
         </div>
         <div class="me-5  fw-bold bg-warning px-2">

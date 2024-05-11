@@ -1,6 +1,6 @@
-<app-navbar></app-navbar>
-<h3 class="text-center mt-5">All Submissions</h3>
+<app-instructor-navbar></app-instructor-navbar>
 
+<h3 class="text-center mt-5">All Submissions</h3>
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-12">
@@ -8,11 +8,12 @@
                 <thead>
                     <tr class="text-center">
                         <th class="bg-success text-light">Id</th>
+                        <th class="bg-success text-light">Student Id</th>
                         <th class="bg-success text-light">Course Name</th>
                         <th class="bg-success text-light ">Submission Name</th>
                         <th class="bg-success text-light ">Submission</th>
                         <th class="bg-success text-light">Status</th>
-                        <th class="bg-success text-light">Grade %</th>
+                        <th class="bg-success text-light">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -22,13 +23,16 @@
                     <ng-container *ngFor="let submission of submissions ;index as i">
                         <tr class="text-center fw-bold">
                             <td>{{ submission.id }}</td>
+                            <td>{{ submission.student_id }}</td>
                             <td>{{ submission.course_name }}</td>
                             <td>{{ submission.submission_title }}</td>
                             <td><a class="btn btn-primary" target="_blank" href="{{submission.submission_link}}">View
                                     Submission</a></td>
                             <td class="text-{{submission.status === 'Graded'? 'warning' :'danger '}}">{{
                                 submission.status }}</td>
-                            <td>{{ submission.grade }}</td>
+                            <td>
+                                <button class="btn btn-success"
+                                    [routerLink]="['/instructor-grading' , submission.id]">Grade</button>
                         </tr>
                     </ng-container>
                 </tbody>

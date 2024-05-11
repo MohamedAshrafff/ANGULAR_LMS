@@ -26,8 +26,10 @@ import { InstructorCourseDetailsComponent } from '../components/instructor-cours
 import { LessonCreationComponent } from '../components/lesson-creation/lesson-creation.component';
 import { UserDetailsComponent } from '../components/user-details/user-details.component';
 import { RequestsInfoComponent } from '../components/requests-info/requests-info.component';
+import { InstructorGradingComponent } from '../components/instructor-grading/instructor-grading.component';
+import { InstructorGradingSubmissionComponent } from '../components/instructor-grading-submission/instructor-grading-submission.component';
 @NgModule({
-  declarations: [AppComponent, HomeComponent, AddTaskComponent, TaskComponent, LogInComponent, RegisterComponent, NavbarComponent, GradesComponent, CoursesComponent, CourseDetailsComponent, NotFoundComponent, UploadDeliverableComponent, CourseCreationComponent, InstructorNavbarComponent, InstructorHomeComponent, UsersInfoComponent, InstructorCourseDetailsComponent, LessonCreationComponent, UserDetailsComponent, RequestsInfoComponent],
+  declarations: [AppComponent, HomeComponent, AddTaskComponent, TaskComponent, LogInComponent, RegisterComponent, NavbarComponent, GradesComponent, CoursesComponent, CourseDetailsComponent, NotFoundComponent, UploadDeliverableComponent, CourseCreationComponent, InstructorNavbarComponent, InstructorHomeComponent, UsersInfoComponent, InstructorCourseDetailsComponent, LessonCreationComponent, UserDetailsComponent, RequestsInfoComponent, InstructorGradingComponent, InstructorGradingSubmissionComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

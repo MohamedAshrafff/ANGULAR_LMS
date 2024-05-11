@@ -12,7 +12,14 @@ import Swal from 'sweetalert2';
 export class UsersService {
   users: User[] = [];
   currentUser: User | null = null;
-  constructor(private fireStore: Firestore, private router: Router) { }
+
+  onStart() {
+    const storedUser = localStorage.getItem('currentUser');
+    if (storedUser) {
+      this.currentUser = JSON.parse(storedUser);
+    }
+  }
+  constructor(private fireStore: Firestore, private router: Router) { this.onStart(); }
   // deleteCourse(i: number): void {
   //   this.courses.splice(i, 1);
   // }
