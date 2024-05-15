@@ -75,7 +75,8 @@ export class RegisterComponent {
     };
 
     this.userService.registerUser(newUser);
-    // localStorage.setItem('currentUser', JSON.stringify(newUser));
+    localStorage.setItem('currentUser', JSON.stringify(newUser));
+    this.router.navigate(['/log-in']);
     Swal.fire({
       position: "top-end",
       icon: "success",
@@ -83,7 +84,6 @@ export class RegisterComponent {
       showConfirmButton: false,
       timer: 2000
     });
-    this.router.navigate(['/log-in']);
   }
 
 }
