@@ -9,7 +9,6 @@
                 <label for="exampleInputEmail1" class="form-label fw-bold">Email address</label>
                 <input type="email" class="form-control" id="exampleInputEmail1" formControlName="email"
                     aria-describedby="emailHelp" (focus)="onFocus()">
-                <!-- Display error message if email field is invalid -->
                 <div
                     *ngIf="signInForm?.get('email')?.invalid && (signInForm?.get('email')?.dirty || signInForm?.get('email')?.touched)">
                     <small class="text-danger">Please enter a valid email address.</small>
@@ -25,7 +24,6 @@
                             id="eyeIcon"></i>
                     </button>
                 </div>
-                <!-- Display error message if password field is invalid -->
                 <div
                     *ngIf="signInForm?.get('password')?.invalid && (signInForm?.get('password')?.dirty || signInForm?.get('password')?.touched)">
                     <small class="text-danger">Please enter a password.</small>
@@ -33,8 +31,6 @@
                 <div *ngIf="isInvalid" class="text-danger">Invalid email or password</div>
             </div>
             <div class="my-5 d-flex justify-content-center align-items-center flex-column">
-                <!-- Disable the button if the form is invalid -->
-
                 <button type="submit" [disabled]="signInForm.invalid" class="btn btn-success w-50 fw-bold p-2">Sign
                     In</button>
                 <p class="mt-2">Don't Have an Account? <a routerLink="/register">Sign Up</a></p>

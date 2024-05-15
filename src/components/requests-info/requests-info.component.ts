@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, firstValueFrom } from 'rxjs';
 import { RequestsService } from '../../services/requests.service';
 import { Request } from '../../interfaces/request';
 import { User } from '../../interfaces/user';
@@ -27,16 +27,19 @@ export class RequestsInfoComponent {
     });
   }
 
-  acceptRequest(user_id: string, course_id: string, course_name: string, request_id: string): void {
+  async acceptRequest(user_id: string, course_id: string, course_name: string, request_id: string): Promise<void> {
     if (user_id) {
-      this.userService.getSingleUser(user_id).subscribe(user => {
-        this.user = user;
-      })
-      if (this.user && this.user.enrolled_courses) {
-        this.user.enrolled_courses.push({ course_id: course_id, course_name: course_name, completed: 0 });
-        this.userService.editUser(user_id, this.user);
-        this.requestsService.deleteRequestById(request_id);
-        this.router.navigate(['/actions-home']);
+      try {
+        this.user = await firstValueFrom(this.userService.getSingleUser(user_id));
+
+        if (this.user && this.user.enrolled_courses) {
+          this.user.enrolled_courses.push({ course_id: course_id, course_name: course_name, completed: 0 });
+
+          this.userService.editUser(user_id, this.user);
+          this.requestsService.deleteRequestById(request_id);
+        }
+      } catch (error) {
+        console.error("Error processing request:", error);
       }
     }
   }

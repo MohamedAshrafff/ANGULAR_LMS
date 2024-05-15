@@ -36,6 +36,16 @@ export class UploadDeliverableComponent {
   }
 
   submitDeliverable(sub_link: string, sub_title: string): void {
+    if (!sub_link || !sub_title) {
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Please fill all feilds !",
+        showConfirmButton: false,
+        timer: 2000
+      });
+      return;
+    }
     if (this.user && this.course) {
       const newSubmisson: Submission = {
         id: '',
@@ -54,7 +64,7 @@ export class UploadDeliverableComponent {
         showConfirmButton: false,
         timer: 2000
       });
-
+      this.router.navigate(['/grades/']);
     }
   }
 }

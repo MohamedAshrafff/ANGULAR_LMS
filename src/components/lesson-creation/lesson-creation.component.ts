@@ -30,6 +30,16 @@ export class LessonCreationComponent {
   }
 
   addLesson(lessonTitle: string, lessonPdf: string, lessonVideo: string): void {
+    if (!lessonTitle || !lessonPdf || !lessonVideo) {
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Please fill all feilds !",
+        showConfirmButton: false,
+        timer: 2000
+      });
+      return;
+    }
     if (this.course) {
       const newCourse: Course = {
         ...this.course,

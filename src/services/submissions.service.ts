@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Submission } from '../interfaces/submissions';
-import { Firestore, addDoc, collection, collectionData, deleteDoc, doc, setDoc } from '@angular/fire/firestore';
+import { Firestore, addDoc, collection, collectionData, deleteDoc, doc, setDoc, DocumentReference } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs';
 
@@ -22,9 +22,10 @@ export class SubmissionsService {
     return courses as Observable<Submission[]>;
   }
 
-  addSubmission(submission: Submission): void {
+  async addSubmission(submission: Submission): Promise<void> {
     const submissionsCollection = collection(this.fireStore, 'submissions');
-    addDoc(submissionsCollection, { ...submission });
+    const docRef: DocumentReference = await addDoc(submissionsCollection, { ...submission });
+    await setDoc(doc(submissionsCollection, docRef.id), { ...submission, id: docRef.id });
   }
 
   getSubmission(id: string): Observable<Submission | null> {

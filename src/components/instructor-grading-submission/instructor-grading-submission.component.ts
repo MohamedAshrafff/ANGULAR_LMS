@@ -34,7 +34,18 @@ export class InstructorGradingSubmissionComponent {
   }
 
   submitDeliverable(grade: string): void {
-    if (this.submission) {
+    console.log(grade);
+    if (grade === '') {
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Please fill all feilds !",
+        showConfirmButton: false,
+        timer: 2000
+      });
+      return;
+    }
+    else if (this.submission) {
       const newSubmission: Submission = {
         ...this.submission,
         grade: grade,

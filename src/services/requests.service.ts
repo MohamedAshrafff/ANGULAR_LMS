@@ -28,10 +28,9 @@ export class RequestsService {
     deleteDoc(document);
   }
 
-  addRequest(request: Request): void {
+  async addRequest(request: Request): Promise<void> {
     const requestsCollection = collection(this.fireStore, 'requests');
-
-    addDoc(requestsCollection, { ...request });
+    const docRef: DocumentReference = await addDoc(requestsCollection, { ...request });
+    await setDoc(doc(requestsCollection, docRef.id), { ...request, request_id: docRef.id });
   }
-
 }

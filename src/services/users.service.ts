@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Query, Firestore, addDoc, collection, collectionData, deleteDoc, doc, setDoc } from '@angular/fire/firestore';
+import { Query, Firestore, addDoc, collection, collectionData, deleteDoc, doc, setDoc, DocumentReference } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs';
 import { Router } from '@angular/router';
@@ -47,10 +47,10 @@ export class UsersService {
     deleteDoc(document);
   }
 
-
-  registerUser(user: User): void {
+  async registerUser(user: User): Promise<void> {
     const usersCollection = collection(this.fireStore, 'users');
-    addDoc(usersCollection, { ...user });
+    const docRef: DocumentReference = await addDoc(usersCollection, { ...user });
+    await setDoc(doc(usersCollection, docRef.id), { ...user, id: docRef.id });
   }
 
   editUser(id: string, user: User): void {

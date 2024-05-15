@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Course } from '../interfaces/course';
-import { Firestore, addDoc, collection, collectionData, deleteDoc, doc, setDoc } from '@angular/fire/firestore';
+import { Firestore, addDoc, collection, collectionData, deleteDoc, doc, setDoc, DocumentReference } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs';
 @Injectable({
@@ -31,9 +31,10 @@ export class CoursesService {
     );
   }
 
-  addCourse(course: Course): void {
+  async addCourse(course: Course): Promise<void> {
     const coursesCollection = collection(this.fireStore, 'courses');
-    addDoc(coursesCollection, { ...course });
+    const docRef: DocumentReference = await addDoc(coursesCollection, { ...course });
+    await setDoc(doc(coursesCollection, docRef.id), { ...course, id: docRef.id });
   }
 
   deleteCourseById(id: string): void {

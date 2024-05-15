@@ -22,7 +22,7 @@
                             <td>{{i}}</td>
                             <td>{{ user.full_name }}</td>
                             <td>{{ user.email }}</td>
-                            <td>{{ user.role }}</td>
+                            <td class="text-{{user.role === 'student'? 'dark' :'primary'}}">{{ user.role }}</td>
                             <td>
                                 <ul>
                                     <li *ngFor="let course of user.enrolled_courses">

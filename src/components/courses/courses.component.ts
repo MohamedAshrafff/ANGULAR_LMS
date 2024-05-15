@@ -18,9 +18,32 @@ export class CoursesComponent {
   coursesObservable: Observable<Course[]>;
   user: User | null = null;
   courseInfo: CourseInfo | null = null;
+  requests: Request[] = [];
   constructor(public coursesService: CoursesService, private userService: UsersService, private req: RequestsService) {
     this.coursesObservable = this.coursesService.getCourses()
     this.user = this.userService.currentUser
+  }
+
+  ngOnInit(): void {
+    this.getAllRequests();
+  }
+
+  getAllRequests() {
+    this.req.getRequests().subscribe({
+      next: (requests: Request[]) => {
+        this.requests = requests;
+      },
+      error: (error) => {
+        console.error('Error fetching requests:', error);
+      }
+    });
+  }
+
+  isAlreadyRequested(course_id: string): boolean {
+    if (this.user) {
+      return !!this.requests.find(request => request.course_id === course_id && request.student_id === this.user?.id);
+    }
+    return false;
   }
 
   checkEnrolled(course_id: string): boolean {

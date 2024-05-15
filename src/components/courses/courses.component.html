@@ -14,8 +14,10 @@
                             <h5 class="card-title align-items-baseline mb-4 fw-bold">{{ course.course_name }}</h5>
                             <p class="card-text">Instructor : <span class="fw-bold">{{ course.instructor_name }}</span>
                             </p>
-                            <a class="btn btn-success w-100 "
-                                (click)="sendEnrollRequest(course.id , course.course_name)">Enroll</a>
+                            <a class="btn btn-success w-100 {{isAlreadyRequested(course.id)
+                                ? 'disabled' :''}}"
+                                (click)="sendEnrollRequest(course.id , course.course_name)">{{isAlreadyRequested(course.id)
+                                ? 'Already Requested' :'Enroll'}}</a>
                         </div>
                     </div>
                 </div>
